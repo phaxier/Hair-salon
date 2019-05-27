@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.assertEquals;
 
 public class ClientTest {
@@ -20,5 +22,11 @@ public class ClientTest {
     public void isCompleted_isFalseAfterInstantiation_false() {
         Client myClient = new Client("My hair style",1);
         assertEquals(false, myClient.isCompleted());
+    }
+
+    @Test
+    public void getCreatedAt_instantiatesWithCurrentTime_today() {
+        Client myClient = new Client("My hair style", 1);
+        assertEquals(LocalDateTime.now().getDayOfWeek(), myClient.getCreatedAt().getDayOfWeek());
     }
 }

@@ -1,6 +1,7 @@
 import org.sql2o.Connection;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Client {
 
@@ -17,6 +18,7 @@ public class Client {
         this.categoryId = categoryId;
 
     }
+
     public String getDescription() {
         return description;
     }
@@ -33,7 +35,9 @@ public class Client {
         return id;
     }
 
-    public int getCategoryId(){ return categoryId;}
+    public int getCategoryId() {
+        return categoryId;
+    }
 
 
     public void save() {
@@ -46,4 +50,26 @@ public class Client {
                     .getKey();
         }
     }
-}
+
+
+        public static List<Client> all() {
+            String sql = "SELECT id, description, categoryId FROM tasks";
+            try (Connection con = DB.sql2o.open()) {
+                return con.createQuery(sql).executeAndFetch(Client.class);
+            }
+        }
+
+        @Override
+        public boolean equals(Object otherClient) {
+            if (!(otherClient instanceof Client)) {
+                return false;
+            } else {
+                Client newClient = (Client) otherClient;
+                return this.getDescription().equals(newClient.getDescription()) &&
+                        this.getId() == newClient.getId() &&
+                        this.getCategoryId() == newClient.getCategoryId();
+
+            }
+        }
+    }
+

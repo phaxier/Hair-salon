@@ -46,5 +46,55 @@ public class ClientTest {
         assertEquals(true, Client.all().get(1).equals(secondClient));
     }
 
+    @Test
+    public void clear_emptiesAllClientsFromArrayList_0() {
+        Client myClient = new Client("My hair style",1);
+        assertEquals(Client.all().size(), 0);
+    }
 
+    @Test
+    public void getId_clientsInstantiateWithAnID_1() {
+        Client myClient = new Client("My hair style",1);
+        myClient.save();
+        assertTrue(myClient.getId()>0);
+    }
+
+    @Test
+    public void equals_returnsTrueIfDescriptionsAreTheSame(){
+        Client firstClient = new Client ("my hair style",1);
+        Client secondClient = new Client("buy more braids",1);
+        assertTrue(firstClient.equals(secondClient));
+    }
+
+    @Test
+    public void find_returnsClientWithSameId_secondTask() {
+        Client firstTask = new Client("My hair style",1);
+        firstTask.save();
+        Client secondClient = new Client("Buy more braids",2);
+        secondClient.save();
+        assertEquals(Client.find(secondClient.getId()), secondClient);
+    }
+
+    public void save_assignsIdToObject(){
+        Client myClient = new Client("my hair styles",1);
+        myClient.save();
+        Client savedClient = Client.all().get(0);
+        assertEquals(myClient.getId(), savedClient.getId());
+    }
+    @Test
+    public void update_updatesClientDescription_true() {
+        Client myClient = new Client("My hair styles", 1);
+        myClient.save();
+        myClient.update("More braids please");
+        assertEquals("More braids please", Client.find(myClient.getId()).getDescription());
+    }
+
+    @Test
+    public void delete_deletesClient_true() {
+        Client myClient = new Client("My hair style", 1);
+        myClient.save();
+        int myTaskId = myClient.getId();
+        myClient.delete();
+        assertEquals(null, Client.find(myClientId));
+    }
 }

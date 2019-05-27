@@ -15,4 +15,10 @@ public class ClientTest {
         Client myClient = new Client("My hair style", 1);
         assertEquals("My hair style", myClient.getDescription());
     }
+
+    @Test
+    public void isCompleted_isFalseAfterInstantiation_false() {
+        Client myClient = new Client("My hair style",1);
+        assertEquals(false, myClient.isCompleted());
+    }
 }

@@ -1,11 +1,44 @@
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.sql2o.Connection;
+import org.sql2o.Sql2o;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ClientTest {
+
+    @Before
+    public void setUp(){
+        DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/hair_salon_test", "kos","210");
+    }
+
+    @After
+    public void tearDown(){
+        try(Connection con = DB.sql2o.open()){
+            String deleteClientQuery = "DELETE FROM clients*;";
+            String deleteStylistQuery = "DELETE FROM stylists *;";
+            con.createQuery(deleteClientQuery).executeUpdate();
+            con.createQuery(deleteStylistQuery).executeUpdate();
+        }
+    }
+
+    @Test
+    public void getClients_retrievesALlClientsFromDatabase_clientsList() {
+        Stylist myStylist = new Stylist("Hair day");
+        myStylist.save();
+        Client firstClient = new Client("My hair style", myStylist.getId());
+        firstClient.save();
+        Client secondClient = new Client("Get more braids", mystylist.getId());
+        secondClient.save();
+        Client[] clients = new Client[] { firstClient, secondClient };
+        assertTrue(myStylist.getClients().containsAll(Arrays.asList(clients)));
+    }
+
 
     @Test
     public void Client_instantiatesCorrectly_true() {
@@ -68,8 +101,8 @@ public class ClientTest {
 
     @Test
     public void find_returnsClientWithSameId_secondTask() {
-        Client firstTask = new Client("My hair style",1);
-        firstTask.save();
+        Client firstClient = new Client("My hair style",1);
+        firstClient.save();
         Client secondClient = new Client("Buy more braids",2);
         secondClient.save();
         assertEquals(Client.find(secondClient.getId()), secondClient);
@@ -93,7 +126,7 @@ public class ClientTest {
     public void delete_deletesClient_true() {
         Client myClient = new Client("My hair style", 1);
         myClient.save();
-        int myTaskId = myClient.getId();
+        int myClientId = myClient.getId();
         myClient.delete();
         assertEquals(null, Client.find(myClientId));
     }

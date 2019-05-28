@@ -120,17 +120,7 @@ public class ClientTest {
         assertEquals(null, Client.find(myClientId));
     }
 
-//    @Test
-//    public void getClients_retrievesALlClientsFromDatabase_clientsList() {
-//        Stylist myStylist = new Stylist("Hair day");
-//        myStylist.save();
-//        Client firstClient = new Client("My hair style", myStylist.getId());
-//        firstClient.save();
-//        Client secondClient = new Client("Get more braids", myStylist.getId());
-//        secondClient.save();
-//        Client[] clients = new Client[] { firstClient, secondClient };
-//        assertTrue(myStylist.getClients().containsAll(Arrays.asList(clients)));
-//    }
+
     @Test
     public void getTasks_retrievesAllClientsFromDatabase_clientList() {
         Stylist stylist = new Stylist("Jacky");

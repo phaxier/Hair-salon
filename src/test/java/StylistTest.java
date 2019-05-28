@@ -3,7 +3,6 @@ import static org.junit.Assert.*;
 import org.sql2o.*;
 import java.util.Arrays;
 
-import java.util.Arrays;
 
 import static org.junit.Assert.assertTrue;
 
@@ -25,17 +24,6 @@ public class StylistTest {
     }
 
 
-    @Test
-    public void getClients_retrievesALlClientsFromDatabase_clientsList() {
-        Stylist myStylist = new Stylist("Hair day");
-        myStylist.save();
-        Client firstClient = new Client("My hair style", myStylist.getId());
-        firstClient.save();
-        Client secondClient = new Client("Get more braids", myStylist.getId());
-        secondClient.save();
-        Client[] clients = new Client[] { firstClient, secondClient };
-        assertTrue(myStylist.getClients().containsAll(Arrays.asList(clients)));
-    }
 
     @Test
     public void equals_returnsTrueIfNamesAreTheSame() {
@@ -50,4 +38,40 @@ public class StylistTest {
         myStylist.save();
         assertTrue(Stylist.all().get(0).equals(myStylist));
     }
+
+    @Test
+    public void save_assignsIdToObject() {
+        Stylist myStylist = new Stylist("New hair style");
+        myStylist.save();
+        Stylist savedStylist = Stylist.all().get(0);
+        assertEquals(myStylist.getId(), savedStylist.getId());
+
+    }
+
+    @Test
+    public void all_returnsAllInstancesOfStylist_true() {
+        Stylist firstStylist = new Stylist("hair");
+        firstStylist.save();
+        Stylist secondStylist = new Stylist("salon");
+        secondStylist.save();
+        assertEquals(true, Stylist.all().get(0).equals(firstStylist));
+        assertEquals(true, Stylist.all().get(1).equals(secondStylist));
+    }
+
+    @Test
+    public void getId_stylistsInstantiateWithAnId_1() {
+        Stylist  testStylist  = new Stylist ("hair");
+        testStylist .save();
+        assertTrue( testStylist .getId()>0);
+    }
+
+    @Test
+    public void find_returnsStylistWithSameId_secondStylist() {
+        Stylist firstStylist = new Stylist("Hair");
+        firstStylist.save();
+        Stylist secondStylist = new Stylist("Work");
+        secondStylist.save();
+        assertEquals(Stylist.find(secondStylist.getId()), secondStylist);
+    }
+
 }

@@ -1,8 +1,7 @@
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.sql2o.Connection;
-import org.sql2o.Sql2o;
+import org.sql2o.*;
+import org.junit.*;
+import static org.junit.Assert.*;
+import java.time.LocalDateTime;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -84,13 +83,13 @@ public class ClientTest {
 
     @Test
     public void equals_returnsTrueIfDescriptionsAreTheSame(){
-        Client firstClient = new Client ("my hair style",1);
+        Client firstClient = new Client ("buy more braids",1);
         Client secondClient = new Client("buy more braids",1);
         assertTrue(firstClient.equals(secondClient));
     }
 
     @Test
-    public void find_returnsClientWithSameId_secondTask() {
+    public void find_returnsClientWithSameId_secondClient() {
         Client firstClient = new Client("My hair style",1);
         firstClient.save();
         Client secondClient = new Client("Buy more braids",2);
@@ -119,5 +118,28 @@ public class ClientTest {
         int myClientId = myClient.getId();
         myClient.delete();
         assertEquals(null, Client.find(myClientId));
+    }
+
+//    @Test
+//    public void getClients_retrievesALlClientsFromDatabase_clientsList() {
+//        Stylist myStylist = new Stylist("Hair day");
+//        myStylist.save();
+//        Client firstClient = new Client("My hair style", myStylist.getId());
+//        firstClient.save();
+//        Client secondClient = new Client("Get more braids", myStylist.getId());
+//        secondClient.save();
+//        Client[] clients = new Client[] { firstClient, secondClient };
+//        assertTrue(myStylist.getClients().containsAll(Arrays.asList(clients)));
+//    }
+    @Test
+    public void getTasks_retrievesAllClientsFromDatabase_clientList() {
+        Stylist stylist = new Stylist("Jacky");
+        stylist.save();
+        Client client = new Client("faux locks", stylist.getId());
+        client.save();
+        Client client1 = new Client("braids", stylist.getId());
+        client1.save();
+        Client[] clients = new Client[] { client, client1 };
+        assertTrue(stylist.getClients().containsAll(Arrays.asList(clients)));
     }
 }

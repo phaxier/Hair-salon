@@ -13,19 +13,14 @@
 <p>There are no stylists yet!</p>
         #end
 
-<h2>New Stylist:</h2>
-
-<form action="/stylists" method="post">
-<label for="name">Stylist Name</label>
-<input id="name" name="name" type="text">
-<button type="submit" class="btn btn-success">Add a Stylist</button>
-</form>
+<a href="/stylists/new">Add a New Stylist</a>
+<a href="/stylists">View all stylists</a>
 
 <h2>New Client:</h2>
 
 <form action="/clients" method="post">
-<label for="stylistId">Select a List</label>
-<select id='stylistId' name='stylistId' type='text'>
+<label for="stylistId">Select a stylist</label>
+<select id='stylistId' name='stylistId' type='number'>
     #foreach($stylist in $stylists)
     <option value="$stylist.getId()">$stylist.getName()</option>
     #end

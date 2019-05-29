@@ -2,19 +2,7 @@
 
 <h2> All Clients: </h2>
 
-        #if($stylists)
-<p>Click on a stylist to view a client:</p>
-<ul>
-#foreach ($stylist in $stylists)
-<li><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li>
-#end
-</ul>
-        #else
-<p>There are no stylists yet!</p>
-        #end
 
-<a href="/stylists/new">Add a New Stylist</a>
-<a href="/stylists">View all stylists</a>
 
 <h2>New Client:</h2>
 

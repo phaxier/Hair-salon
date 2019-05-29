@@ -2,16 +2,9 @@
 
 <ul>
 #foreach($client in $stylist.getClients())
-<li><a href="/stylists/$stylist.getId()/clients/$client.getId()">$task.getDescription()</a></li>
+<li><a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getDescription()</a></li>
 #end
 </ul>
-<h2>New Stylist:</h2>
 
-<form action="/stylists" method="post">
-<label for="name">Stylist Name</label>
-<input id="name" name="name" type="text">
-<button type="submit" class="btn btn-success">Add a Stylist</button>
-</form>
-
-<a href="/stylists/$stylist.getId()/clients/new">Add a new client</a>
+<a href="/stylists/$stylist.getId()/clients/newClient">Add a new client</a>
 <a href="/stylists">All stylists</a>

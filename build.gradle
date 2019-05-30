@@ -5,8 +5,7 @@ plugins {
 
 group 'hair-salon'
 version '1.0-SNAPSHOT'
-applicationName  'hair-salon'
-mainClassName  "App"
+mainClassName  = "App"
 
 sourceCompatibility = 1.8
 
@@ -23,3 +22,12 @@ dependencies {
 }
 defaultTasks = ['clean']
 task stage (dependsOn: ['clean', 'installApp'])
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'jdepend'
+apply plugin: 'maven'
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'war'
+apply plugin: 'findbugs'
+apply plugin: 'signing'

@@ -24,3 +24,4 @@ dependencies {
 }
 
 task stage(dependsOn:['clean', 'installDist'])
+    

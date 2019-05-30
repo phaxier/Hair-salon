@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 public class Stylist {
 
+
     private String name;
     private int id;
 

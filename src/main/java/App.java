@@ -110,6 +110,7 @@ public class App {
                 Client client = Client.find(Integer.parseInt(request.params("id")));
                 Stylist stylist = Stylist.find(client.getStylistId());
                 client.delete();
+
                 model.put("stylist", stylist);
                 model.put("template", "templates/stylist.vtl");
                 return new ModelAndView(model, layout);

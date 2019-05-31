@@ -13,15 +13,15 @@
         #foreach($client in $stylist.getClients())
         <a href="/stylists/$stylist.getId()/clients/$client.getId()">$client.getDescription()</a>
         #end
+        <a href="/clients/new"><button class = "btn btn-unique">Add a new client</button></a>
+        <a href="/stylists"><button class = "btn btn-unique">All Stylists</button></a>
+
+        <form action="/clients/$stylist.getStylistId()/stylists/$client.getId()/delete" method="post">
+            <button type="submit" class="btn btn-info" id="delete-client">Delete Stylist</button>
+        </form>
     </div>
 
 </div>
         <!-- Card -->
 
 
-<a href="/clients/new"><button class = "btn btn-unique">Add a new client</button></a>
-<a href="/stylists"><button class = "btn btn-unique">All Stylists</button></a>
-
-<form action="/clients/$stylist.getStylistId()/stylists/$client.getId()/delete" method="post">
-<button type="submit" class="btn btn-info" id="delete-client">Delete Stylist</button>
-</form>

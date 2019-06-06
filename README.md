@@ -1,6 +1,6 @@
 # Hair-salon
 
-Java and Postgres application of a hair salon, 2/26/16
+Java and Postgres application of a hair salon.
 
 ## Description
 

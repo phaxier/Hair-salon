@@ -19,13 +19,14 @@ Database set up instructions:
 CREATE DATABASE hair_salon;
 CREATE TABLE stylists (id serial PRIMARY KEY, name varchar);
 CREATE TABLE clients (id serial PRIMARY KEY, name varchar, gender varchar, int cellphone);
-Go to https://enigmatic-headland-33957.herokuapp.com/ for more information.
-Known Bugs
+
+
+## Known Bugs
 No known bugs.
 
 ## Support and contact details
 
-If you run into any issues or have questions, ideas or concerns, contact me at janetisak@yahoo.com. I encourage you to make a contribution to the code if see fit for improvement.
+If you run into any issues or have questions, ideas or concerns, contact me at phaxier@yahoo.com. I encourage you to make a contribution to the code if see fit for improvement.
 
 ## Technologies Used
 Java
